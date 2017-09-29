@@ -20,6 +20,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.Properties;
 
 import java.sql.Connection;
@@ -211,48 +212,24 @@ public class TheSystem extends JFrame {
 
 		ResultSet resultSet = theStatement.executeQuery("select Bdate from employee");
 		// Note: above replaced Data with web_members3. You can change "where id=11" to any number value.
-
-		String bDate = "";
-
+		
+		Date bDate = null;
+		
 		if( resultSet.next() )
 		{
-			//bDate = resultSet.getString("b");
-			
-			// ok where are we in the list?
-			
-			int localCount = 1;
-			
-			while ( resultSet.previous() == true ) // if there are no more previous rows in the list
-			{
-				localCount++;
-				//resultSet.previous();
-			}
-			
-			if ( localCount == 1)
-			{
-				// there was no row behind the first row (row we're looking at).
-				resultSet.next();
-			}
-			else
-			{
-				while ( localCount != )
-				{
-					
-				}
-			}
-			
-			
-
-			resultSet.next();
-			
-			
-			
-			
-			bDate = resultSet.getDate(columnIndex);
+			bDate = resultSet.getDate("BDate");
 		}
-
-		System.out.println("B Date is " + bDate);
-		return bDate;
+		
+		//convert the Date to String
+		String theDateInString = String.valueOf(bDate);
+		
+		//int rowImCurrentlyAt = resultSet.getRow();
+			
+		//Date bDate = resultSet.getDate(rowImCurrentlyAt);
+		
+		//System.out.println("B Date is " + bDate);
+		
+		return theDateInString;
 	}
 
 	private String sendBackName() throws SQLException
