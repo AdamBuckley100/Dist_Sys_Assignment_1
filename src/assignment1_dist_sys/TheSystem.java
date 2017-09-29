@@ -240,18 +240,18 @@ public class TheSystem extends JFrame {
 
 		Statement theStatement = conn.createStatement();
 
-		ResultSet resultSet = theStatement.executeQuery("select lastname from employee");
+		ResultSet resultSet = theStatement.executeQuery("select Name from employee");
 		// Note: above replaced Data with web_members3. You can change "where id=11" to any number value.
 
-		String lastName = "";
+		String name = "";
 
 		if( resultSet.next() )
 		{
-			lastName = resultSet.getString("lastname");
+			name = resultSet.getString("name");
 		}
 
-		System.out.println("Last Name is " + lastName);
-		return lastName;
+		System.out.println("Name is " + name);
+		return name;
 	}
 
 	private String sendBackAddress() throws SQLException
@@ -262,18 +262,18 @@ public class TheSystem extends JFrame {
 
 		Statement theStatement = conn.createStatement();
 
-		ResultSet resultSet = theStatement.executeQuery("select email from employee");
+		ResultSet resultSet = theStatement.executeQuery("select Address from employee");
 		// Note: above replaced Data with web_members3. You can change "where id=11" to any number value.
 
-		String email = "";
+		String address = "";
 
 		if( resultSet.next() )
 		{
-			email = resultSet.getString("email");
+			address = resultSet.getString("address");
 		}
 
-		System.out.println("Email is " + email);
-		return email;
+		System.out.println("Address is " + address);
+		return address;
 	}
 	
 	private String sendBackSalary() throws SQLException
@@ -284,18 +284,18 @@ public class TheSystem extends JFrame {
 
 		Statement theStatement = conn.createStatement();
 
-		ResultSet resultSet = theStatement.executeQuery("select email from employee");
+		ResultSet resultSet = theStatement.executeQuery("select Salary from employee");
 		// Note: above replaced Data with web_members3. You can change "where id=11" to any number value.
 
-		String email = "";
+		String theSalaryInString = "";
 
 		if( resultSet.next() )
 		{
-			email = resultSet.getString("email");
+			theSalaryInString = String.valueOf( resultSet.getBigDecimal("Salary") );
 		}
 
-		System.out.println("Email is " + email);
-		return email;
+		System.out.println("Salary is " + theSalaryInString);
+		return theSalaryInString;
 	}
 	
 	private String sendBackGender() throws SQLException
@@ -306,18 +306,19 @@ public class TheSystem extends JFrame {
 
 		Statement theStatement = conn.createStatement();
 
-		ResultSet resultSet = theStatement.executeQuery("select firstname from employee");
+		ResultSet resultSet = theStatement.executeQuery("select Gender from employee");
 		// Note: above replaced Data with web_members3. You can change "where id=11" to any number value.
 
-		String firstName = "";
+		String genderInString = "";
 
 		if( resultSet.next() )
 		{
-			firstName = resultSet.getString("firstname");
+			genderInString = resultSet.getString("Gender"); //Gender is char not varchar
 		}
 
-		System.out.println("First Name is " + firstName);
-		return firstName;
+		System.out.println("Gender is " + genderInString);
+		
+		return genderInString;
 	}
 
 	private String sendBackWorks_For() throws SQLException
@@ -328,18 +329,22 @@ public class TheSystem extends JFrame {
 
 		Statement theStatement = conn.createStatement();
 
-		ResultSet resultSet = theStatement.executeQuery("select lastname from employee");
+		ResultSet resultSet = theStatement.executeQuery("select Works_For from employee");
 		// Note: above replaced Data with web_members3. You can change "where id=11" to any number value.
 
-		String lastName = "";
+		int works_ForInInt = 0;
+		String works_ForInString = "";
 
 		if( resultSet.next() )
 		{
-			lastName = resultSet.getString("lastname");
+			works_ForInInt = resultSet.getInt("Works_For");
 		}
+		
+		works_ForInString = String.valueOf( works_ForInInt );
 
-		System.out.println("Last Name is " + lastName);
-		return lastName;
+		System.out.println("Last Name is " + works_ForInString);
+		
+		return works_ForInString;
 	}
 
 	private String sendBackManages() throws SQLException
@@ -350,18 +355,22 @@ public class TheSystem extends JFrame {
 
 		Statement theStatement = conn.createStatement();
 
-		ResultSet resultSet = theStatement.executeQuery("select email from employee");
+		ResultSet resultSet = theStatement.executeQuery("select Manages from employee");
 		// Note: above replaced Data with web_members3. You can change "where id=11" to any number value.
 
-		String email = "";
+		int managesInInt = 0;
+		String managesInString = "";
 
 		if( resultSet.next() )
 		{
-			email = resultSet.getString("email");
+			managesInInt = resultSet.getInt("Manages");
 		}
+		
+		managesInString = String.valueOf( managesInInt );
 
-		System.out.println("Email is " + email);
-		return email;
+		System.out.println("Manages is " + managesInString);
+		
+		return managesInString;
 	}
 	
 	private String sendBackSupervises() throws SQLException
@@ -372,18 +381,24 @@ public class TheSystem extends JFrame {
 
 		Statement theStatement = conn.createStatement();
 
-		ResultSet resultSet = theStatement.executeQuery("select email from employee");
+		ResultSet resultSet = theStatement.executeQuery("select Supervises from employee");
 		// Note: above replaced Data with web_members3. You can change "where id=11" to any number value.
 
-		String email = "";
+		int supervisesInInt = 0;
+		String supervisesInString = "";
 
 		if( resultSet.next() )
 		{
-			email = resultSet.getString("email");
+			supervisesInInt = resultSet.getInt("Supervises");
 		}
+		
+		supervisesInString = String.valueOf( supervisesInInt );
 
-		System.out.println("Email is " + email);
-		return email;
+		System.out.println("Manages is " + supervisesInString);
+
+		System.out.println("Supervises is " + supervisesInString);
+		
+		return supervisesInString;
 	}
 
 	/**
