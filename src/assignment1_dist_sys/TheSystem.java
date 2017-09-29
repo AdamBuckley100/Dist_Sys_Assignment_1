@@ -496,6 +496,81 @@ public class TheSystem extends JFrame {
 		btnNext.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				//here st
+				
+				try {
+					boolean whatIsNext = true;
+
+					if ( (whatIsNext = resultSet.next() ) == false ) // if theres nothing next
+					{
+						
+						if (whatIsNext == false) // no next call made
+						{
+							//dont allow it to go past at all
+							// show the previous on screen (previous IS the last one)
+
+							resultSet.previous();
+
+							String ssnVal = resultSet.getString("Ssn");
+							String bDateVal = resultSet.getString("Bdate");
+							String nameVal = resultSet.getString("Name");
+							String addressVal = resultSet.getString("Address");
+							String salaryVal = resultSet.getString("Salary");
+							String genderVal = resultSet.getString("Gender");
+							String works_ForVal = resultSet.getString("Works_For");
+							String managesVal = resultSet.getString("Manages");
+							String supervisesVal = resultSet.getString("Supervises");
+
+							textField.setText(ssnVal);
+							textField_1.setText(bDateVal);
+							textField_2.setText(nameVal);
+							textField_3.setText(addressVal);
+							textField_4.setText(salaryVal);
+							textField_5.setText(genderVal);
+							textField_6.setText(works_ForVal);
+							textField_7.setText(managesVal);
+							textField_8.setText(supervisesVal);
+							
+						}
+					}
+					//end of new
+
+					// resultSet.next (); <-- not needed the next was done in the above if statment.
+					String ssnVal = resultSet.getString("Ssn");
+					String bDateVal = resultSet.getString("Bdate");
+					String nameVal = resultSet.getString("Name");
+					String addressVal = resultSet.getString("Address");
+					String salaryVal = resultSet.getString("Salary");
+					String genderVal = resultSet.getString("Gender");
+					String works_ForVal = resultSet.getString("Works_For");
+					String managesVal = resultSet.getString("Manages");
+					String supervisesVal = resultSet.getString("Supervises");
+
+					textField.setText(ssnVal);
+					textField_1.setText(bDateVal);
+					textField_2.setText(nameVal);
+					textField_3.setText(addressVal);
+					textField_4.setText(salaryVal);
+					textField_5.setText(genderVal);
+					textField_6.setText(works_ForVal);
+					textField_7.setText(managesVal);
+					textField_8.setText(supervisesVal);
+
+					//						System.out.println (
+					//								"id = " + idVal
+					//								+ ", fistname = " + firstNameVal
+					//								+ ", lastname = " + lastNameVal
+					//								+ ", email = " + emailVal);
+
+				} catch (SQLException e1) {
+					System.out.println("error 4 OK?");
+					e1.printStackTrace();
+				}
+				
+				
+				//here end
+				
 			}
 		});
 		GridBagConstraints gbc_btnNext = new GridBagConstraints();
