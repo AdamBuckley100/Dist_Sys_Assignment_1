@@ -87,7 +87,8 @@ public class TheSystem extends JFrame {
 	private final String tableName = "employee";
 	
 	/**
-	 * Get initial database connection
+	 * Get a new database connection
+	 * 
 	 * @return
 	 * @throws SQLException
 	 */
@@ -186,20 +187,20 @@ public class TheSystem extends JFrame {
 		ResultSet resultSet = theStatement.executeQuery("select Ssn from employee");
 		// Note: above replaced Data with web_members3. You can change "where id=11" to any number value.
 
-		String ssn = "";
+		String ssnInString = "";
 
-		int theSsn;
+		int theSsn = 0;
 
 		if( resultSet.next() )
 		{
-
 			//id = resultSet.getString("id"); String.valueOf(i)
 			theSsn = resultSet.getInt("Ssn");
-			ssn = String.valueOf(theSsn);
 		}
+		
+		ssnInString = String.valueOf(theSsn);
 
-		System.out.println("Ssn is " + ssn);
-		return ssn;
+		System.out.println("Ssn is " + ssnInString);
+		return ssnInString;
 	}
 
 	private String sendBackBdate() throws SQLException
@@ -403,8 +404,9 @@ public class TheSystem extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public TheSystem() {
+	public TheSystem() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 698, 376);
 		contentPane = new JPanel();
@@ -432,6 +434,8 @@ public class TheSystem extends JFrame {
 		contentPane.add(lblSsn, gbc_lblSsn);
 		
 		textField = new JTextField();
+		String theSsn = sendBackSsn();
+		textField.setText(theSsn);
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.anchor = GridBagConstraints.WEST;
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
@@ -448,6 +452,8 @@ public class TheSystem extends JFrame {
 		contentPane.add(lblDob, gbc_lblDob);
 		
 		textField_1 = new JTextField();
+		String theBdate = sendBackSsn();
+		textField.setText(theBdate);
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.anchor = GridBagConstraints.WEST;
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
@@ -476,6 +482,8 @@ public class TheSystem extends JFrame {
 		contentPane.add(lblName, gbc_lblName);
 		
 		textField_2 = new JTextField();
+		String theName = sendBackSsn();
+		textField.setText(theName);
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 		gbc_textField_2.anchor = GridBagConstraints.WEST;
 		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
@@ -504,6 +512,8 @@ public class TheSystem extends JFrame {
 		contentPane.add(lblAddress, gbc_lblAddress);
 		
 		textField_3 = new JTextField();
+		String theAddress = sendBackSsn();
+		textField.setText(theAddress);
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 		gbc_textField_3.anchor = GridBagConstraints.WEST;
 		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
@@ -520,6 +530,8 @@ public class TheSystem extends JFrame {
 		contentPane.add(lblSalary, gbc_lblSalary);
 		
 		textField_4 = new JTextField();
+		String theSalary = sendBackSsn();
+		textField.setText(theSalary);
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
 		gbc_textField_4.anchor = GridBagConstraints.WEST;
 		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
@@ -560,6 +572,8 @@ public class TheSystem extends JFrame {
 		contentPane.add(lblGender, gbc_lblGender);
 		
 		textField_5 = new JTextField();
+		String theGender = sendBackSsn();
+		textField.setText(theGender);
 		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
 		gbc_textField_5.anchor = GridBagConstraints.WEST;
 		gbc_textField_5.insets = new Insets(0, 0, 5, 5);
@@ -576,6 +590,8 @@ public class TheSystem extends JFrame {
 		contentPane.add(lblNoOfPeople, gbc_lblNoOfPeople);
 		
 		textField_6 = new JTextField();
+		String theWorks_For = sendBackSsn();
+		textField.setText(theWorks_For);
 		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
 		gbc_textField_6.anchor = GridBagConstraints.WEST;
 		gbc_textField_6.insets = new Insets(0, 0, 5, 5);
@@ -592,6 +608,8 @@ public class TheSystem extends JFrame {
 		contentPane.add(lblNoOfPeople_1, gbc_lblNoOfPeople_1);
 		
 		textField_7 = new JTextField();
+		String theManages = sendBackSsn();
+		textField.setText(theManages);
 		GridBagConstraints gbc_textField_7 = new GridBagConstraints();
 		gbc_textField_7.anchor = GridBagConstraints.WEST;
 		gbc_textField_7.insets = new Insets(0, 0, 5, 5);
@@ -608,6 +626,8 @@ public class TheSystem extends JFrame {
 		contentPane.add(lblNoOfPeople_2, gbc_lblNoOfPeople_2);
 		
 		textField_8 = new JTextField();
+		String theSupervises = sendBackSsn();
+		textField.setText(theSupervises);
 		GridBagConstraints gbc_textField_8 = new GridBagConstraints();
 		gbc_textField_8.anchor = GridBagConstraints.WEST;
 		gbc_textField_8.insets = new Insets(0, 0, 5, 5);
