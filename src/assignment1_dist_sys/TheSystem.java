@@ -63,7 +63,7 @@ public class TheSystem extends JFrame {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
-	
+
 	Connection conn;
 	Statement theStatement;
 	ResultSet resultSet;
@@ -82,10 +82,10 @@ public class TheSystem extends JFrame {
 
 	/** The name of the database we are testing with (this default is installed with MySQL) */
 	private final String dbName = "test2_create_db";
-	
+
 	/** The name of the table we are testing with */
 	private final String tableName = "employee";
-	
+
 	/**
 	 * Get a new database connection
 	 * 
@@ -104,7 +104,7 @@ public class TheSystem extends JFrame {
 
 		return conn;
 	}
-	
+
 	/**
 	 * Run a SQL command which does NOT return a recordset:
 	 * CREATE/INSERT/UPDATE/DELETE/DROP/etc.
@@ -123,7 +123,7 @@ public class TheSystem extends JFrame {
 			if (stmt != null) { stmt.close(); }
 		}
 	}
-	
+
 	/**
 	 * Connect to MySQL and do some stuff.
 	 */
@@ -153,7 +153,7 @@ public class TheSystem extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Launch the application.
 	 * @throws SQLException 
@@ -175,7 +175,7 @@ public class TheSystem extends JFrame {
 			}
 		});
 	}
-	
+
 	private String sendBackSsn() throws SQLException
 	{
 		Connection conn = getConnection();
@@ -196,7 +196,7 @@ public class TheSystem extends JFrame {
 			//id = resultSet.getString("id"); String.valueOf(i)
 			theSsn = resultSet.getInt("Ssn");
 		}
-		
+
 		ssnInString = String.valueOf(theSsn);
 
 		System.out.println("Ssn is " + ssnInString);
@@ -213,23 +213,23 @@ public class TheSystem extends JFrame {
 
 		ResultSet resultSet = theStatement.executeQuery("select Bdate from employee");
 		// Note: above replaced Data with web_members3. You can change "where id=11" to any number value.
-		
+
 		Date bDate = null;
-		
+
 		if( resultSet.next() )
 		{
 			bDate = resultSet.getDate("BDate");
 		}
-		
+
 		//convert the Date to String
 		String theDateInString = String.valueOf(bDate);
-		
+
 		//int rowImCurrentlyAt = resultSet.getRow();
-			
+
 		//Date bDate = resultSet.getDate(rowImCurrentlyAt);
-		
+
 		//System.out.println("B Date is " + bDate);
-		
+
 		return theDateInString;
 	}
 
@@ -276,7 +276,7 @@ public class TheSystem extends JFrame {
 		System.out.println("Address is " + address);
 		return address;
 	}
-	
+
 	private String sendBackSalary() throws SQLException
 	{
 		Connection conn = getConnection();
@@ -298,7 +298,7 @@ public class TheSystem extends JFrame {
 		System.out.println("Salary is " + theSalaryInString);
 		return theSalaryInString;
 	}
-	
+
 	private String sendBackGender() throws SQLException
 	{
 		Connection conn = getConnection();
@@ -318,7 +318,7 @@ public class TheSystem extends JFrame {
 		}
 
 		System.out.println("Gender is " + genderInString);
-		
+
 		return genderInString;
 	}
 
@@ -340,11 +340,11 @@ public class TheSystem extends JFrame {
 		{
 			works_ForInInt = resultSet.getInt("Works_For");
 		}
-		
+
 		works_ForInString = String.valueOf( works_ForInInt );
 
-		System.out.println("Last Name is " + works_ForInString);
-		
+		System.out.println("Works_For is " + works_ForInString);
+
 		return works_ForInString;
 	}
 
@@ -366,14 +366,14 @@ public class TheSystem extends JFrame {
 		{
 			managesInInt = resultSet.getInt("Manages");
 		}
-		
+
 		managesInString = String.valueOf( managesInInt );
 
 		System.out.println("Manages is " + managesInString);
-		
+
 		return managesInString;
 	}
-	
+
 	private String sendBackSupervises() throws SQLException
 	{
 		Connection conn = getConnection();
@@ -392,13 +392,13 @@ public class TheSystem extends JFrame {
 		{
 			supervisesInInt = resultSet.getInt("Supervises");
 		}
-		
+
 		supervisesInString = String.valueOf( supervisesInInt );
 
 		System.out.println("Manages is " + supervisesInString);
 
 		System.out.println("Supervises is " + supervisesInString);
-		
+
 		return supervisesInString;
 	}
 
@@ -418,21 +418,21 @@ public class TheSystem extends JFrame {
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-		
+
 		JLabel lblEmployeeDetails = new JLabel("Employee Details");
 		GridBagConstraints gbc_lblEmployeeDetails = new GridBagConstraints();
 		gbc_lblEmployeeDetails.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEmployeeDetails.gridx = 4;
 		gbc_lblEmployeeDetails.gridy = 0;
 		contentPane.add(lblEmployeeDetails, gbc_lblEmployeeDetails);
-		
+
 		JLabel lblSsn = new JLabel("SSn");
 		GridBagConstraints gbc_lblSsn = new GridBagConstraints();
 		gbc_lblSsn.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSsn.gridx = 2;
 		gbc_lblSsn.gridy = 1;
 		contentPane.add(lblSsn, gbc_lblSsn);
-		
+
 		textField = new JTextField();
 		String theSsn = sendBackSsn();
 		textField.setText(theSsn);
@@ -443,17 +443,17 @@ public class TheSystem extends JFrame {
 		gbc_textField.gridy = 1;
 		contentPane.add(textField, gbc_textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblDob = new JLabel("DOB");
 		GridBagConstraints gbc_lblDob = new GridBagConstraints();
 		gbc_lblDob.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDob.gridx = 2;
 		gbc_lblDob.gridy = 2;
 		contentPane.add(lblDob, gbc_lblDob);
-		
+
 		textField_1 = new JTextField();
-		String theBdate = sendBackSsn();
-		textField.setText(theBdate);
+		String theBdate = sendBackBdate();
+		textField_1.setText(theBdate);
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.anchor = GridBagConstraints.WEST;
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
@@ -461,7 +461,7 @@ public class TheSystem extends JFrame {
 		gbc_textField_1.gridy = 2;
 		contentPane.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
-		
+
 		JButton btnPrevious = new JButton("Previous");
 		btnPrevious.addMouseListener(new MouseAdapter() {
 			@Override
@@ -473,17 +473,17 @@ public class TheSystem extends JFrame {
 		gbc_btnPrevious.gridx = 5;
 		gbc_btnPrevious.gridy = 2;
 		contentPane.add(btnPrevious, gbc_btnPrevious);
-		
+
 		JLabel lblName = new JLabel("Name");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.insets = new Insets(0, 0, 5, 5);
 		gbc_lblName.gridx = 2;
 		gbc_lblName.gridy = 3;
 		contentPane.add(lblName, gbc_lblName);
-		
+
 		textField_2 = new JTextField();
-		String theName = sendBackSsn();
-		textField.setText(theName);
+		String theName = sendBackName();
+		textField_2.setText(theName);
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 		gbc_textField_2.anchor = GridBagConstraints.WEST;
 		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
@@ -491,7 +491,7 @@ public class TheSystem extends JFrame {
 		gbc_textField_2.gridy = 3;
 		contentPane.add(textField_2, gbc_textField_2);
 		textField_2.setColumns(10);
-		
+
 		JButton btnNext = new JButton("Next");
 		btnNext.addMouseListener(new MouseAdapter() {
 			@Override
@@ -503,17 +503,17 @@ public class TheSystem extends JFrame {
 		gbc_btnNext.gridx = 5;
 		gbc_btnNext.gridy = 3;
 		contentPane.add(btnNext, gbc_btnNext);
-		
+
 		JLabel lblAddress = new JLabel("Address");
 		GridBagConstraints gbc_lblAddress = new GridBagConstraints();
 		gbc_lblAddress.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAddress.gridx = 2;
 		gbc_lblAddress.gridy = 4;
 		contentPane.add(lblAddress, gbc_lblAddress);
-		
+
 		textField_3 = new JTextField();
-		String theAddress = sendBackSsn();
-		textField.setText(theAddress);
+		String theAddress = sendBackAddress();
+		textField_3.setText(theAddress);
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 		gbc_textField_3.anchor = GridBagConstraints.WEST;
 		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
@@ -521,17 +521,17 @@ public class TheSystem extends JFrame {
 		gbc_textField_3.gridy = 4;
 		contentPane.add(textField_3, gbc_textField_3);
 		textField_3.setColumns(10);
-		
+
 		JLabel lblSalary = new JLabel("Salary");
 		GridBagConstraints gbc_lblSalary = new GridBagConstraints();
 		gbc_lblSalary.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSalary.gridx = 2;
 		gbc_lblSalary.gridy = 5;
 		contentPane.add(lblSalary, gbc_lblSalary);
-		
+
 		textField_4 = new JTextField();
-		String theSalary = sendBackSsn();
-		textField.setText(theSalary);
+		String theSalary = sendBackSalary();
+		textField_4.setText(theSalary);
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
 		gbc_textField_4.anchor = GridBagConstraints.WEST;
 		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
@@ -539,14 +539,14 @@ public class TheSystem extends JFrame {
 		gbc_textField_4.gridy = 5;
 		contentPane.add(textField_4, gbc_textField_4);
 		textField_4.setColumns(10);
-		
+
 		JButton btnClear = new JButton("Clear");
 		btnClear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				// clear all of the fields 
-				
+
 				textField.setText("");
 				textField_1.setText("");
 				textField_2.setText("");
@@ -563,17 +563,17 @@ public class TheSystem extends JFrame {
 		gbc_btnClear.gridx = 5;
 		gbc_btnClear.gridy = 5;
 		contentPane.add(btnClear, gbc_btnClear);
-		
+
 		JLabel lblGender = new JLabel("Gender");
 		GridBagConstraints gbc_lblGender = new GridBagConstraints();
 		gbc_lblGender.insets = new Insets(0, 0, 5, 5);
 		gbc_lblGender.gridx = 2;
 		gbc_lblGender.gridy = 6;
 		contentPane.add(lblGender, gbc_lblGender);
-		
+
 		textField_5 = new JTextField();
-		String theGender = sendBackSsn();
-		textField.setText(theGender);
+		String theGender = sendBackGender();
+		textField_5.setText(theGender);
 		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
 		gbc_textField_5.anchor = GridBagConstraints.WEST;
 		gbc_textField_5.insets = new Insets(0, 0, 5, 5);
@@ -581,17 +581,17 @@ public class TheSystem extends JFrame {
 		gbc_textField_5.gridy = 6;
 		contentPane.add(textField_5, gbc_textField_5);
 		textField_5.setColumns(10);
-		
+
 		JLabel lblNoOfPeople = new JLabel("No. of people working for");
 		GridBagConstraints gbc_lblNoOfPeople = new GridBagConstraints();
 		gbc_lblNoOfPeople.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNoOfPeople.gridx = 2;
 		gbc_lblNoOfPeople.gridy = 7;
 		contentPane.add(lblNoOfPeople, gbc_lblNoOfPeople);
-		
+
 		textField_6 = new JTextField();
-		String theWorks_For = sendBackSsn();
-		textField.setText(theWorks_For);
+		String theWorks_For = sendBackWorks_For();
+		textField_6.setText(theWorks_For);
 		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
 		gbc_textField_6.anchor = GridBagConstraints.WEST;
 		gbc_textField_6.insets = new Insets(0, 0, 5, 5);
@@ -599,17 +599,17 @@ public class TheSystem extends JFrame {
 		gbc_textField_6.gridy = 7;
 		contentPane.add(textField_6, gbc_textField_6);
 		textField_6.setColumns(10);
-		
+
 		JLabel lblNoOfPeople_1 = new JLabel("No. of people managing");
 		GridBagConstraints gbc_lblNoOfPeople_1 = new GridBagConstraints();
 		gbc_lblNoOfPeople_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNoOfPeople_1.gridx = 2;
 		gbc_lblNoOfPeople_1.gridy = 8;
 		contentPane.add(lblNoOfPeople_1, gbc_lblNoOfPeople_1);
-		
+
 		textField_7 = new JTextField();
-		String theManages = sendBackSsn();
-		textField.setText(theManages);
+		String theManages = sendBackManages();
+		textField_7.setText(theManages);
 		GridBagConstraints gbc_textField_7 = new GridBagConstraints();
 		gbc_textField_7.anchor = GridBagConstraints.WEST;
 		gbc_textField_7.insets = new Insets(0, 0, 5, 5);
@@ -617,17 +617,17 @@ public class TheSystem extends JFrame {
 		gbc_textField_7.gridy = 8;
 		contentPane.add(textField_7, gbc_textField_7);
 		textField_7.setColumns(10);
-		
+
 		JLabel lblNoOfPeople_2 = new JLabel("No. of people supervising");
 		GridBagConstraints gbc_lblNoOfPeople_2 = new GridBagConstraints();
 		gbc_lblNoOfPeople_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNoOfPeople_2.gridx = 2;
 		gbc_lblNoOfPeople_2.gridy = 9;
 		contentPane.add(lblNoOfPeople_2, gbc_lblNoOfPeople_2);
-		
+
 		textField_8 = new JTextField();
-		String theSupervises = sendBackSsn();
-		textField.setText(theSupervises);
+		String theSupervises = sendBackSupervises();
+		textField_8.setText(theSupervises);
 		GridBagConstraints gbc_textField_8 = new GridBagConstraints();
 		gbc_textField_8.anchor = GridBagConstraints.WEST;
 		gbc_textField_8.insets = new Insets(0, 0, 5, 5);
@@ -635,7 +635,7 @@ public class TheSystem extends JFrame {
 		gbc_textField_8.gridy = 9;
 		contentPane.add(textField_8, gbc_textField_8);
 		textField_8.setColumns(10);
-		
+
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
@@ -648,7 +648,7 @@ public class TheSystem extends JFrame {
 		gbc_btnAdd.gridx = 2;
 		gbc_btnAdd.gridy = 11;
 		contentPane.add(btnAdd, gbc_btnAdd);
-		
+
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addMouseListener(new MouseAdapter() {
 			@Override
@@ -660,7 +660,7 @@ public class TheSystem extends JFrame {
 		gbc_btnDelete.gridx = 3;
 		gbc_btnDelete.gridy = 11;
 		contentPane.add(btnDelete, gbc_btnDelete);
-		
+
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addMouseListener(new MouseAdapter() {
 			@Override
