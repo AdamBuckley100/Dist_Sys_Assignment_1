@@ -430,7 +430,7 @@ public class TheSystem extends JFrame {
 		gbc_lblEmployeeDetails.gridy = 0;
 		contentPane.add(lblEmployeeDetails, gbc_lblEmployeeDetails);
 
-		JLabel lblSsn = new JLabel("SSn");
+		JLabel lblSsn = new JLabel("SSn (No Update/Change Allowed)");
 		GridBagConstraints gbc_lblSsn = new GridBagConstraints();
 		gbc_lblSsn.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSsn.gridx = 2;
@@ -500,15 +500,15 @@ public class TheSystem extends JFrame {
 		btnNext.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				//here st
-				
+
 				try {
 					boolean whatIsNext = true;
 
 					if ( (whatIsNext = resultSet.next() ) == false ) // if theres nothing next
 					{
-						
+
 						if (whatIsNext == false) // no next call made
 						{
 							//dont allow it to go past at all
@@ -535,7 +535,7 @@ public class TheSystem extends JFrame {
 							textField_6.setText(works_ForVal);
 							textField_7.setText(managesVal);
 							textField_8.setText(supervisesVal);
-							
+
 						}
 					}
 					//end of new
@@ -571,10 +571,10 @@ public class TheSystem extends JFrame {
 					System.out.println("error 4 OK?");
 					e1.printStackTrace();
 				}
-				
-				
+
+
 				//here end
-				
+
 			}
 		});
 		GridBagConstraints gbc_btnNext = new GridBagConstraints();
@@ -715,11 +715,12 @@ public class TheSystem extends JFrame {
 		contentPane.add(textField_8, gbc_textField_8);
 		textField_8.setColumns(10);
 
+		// The Add button
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 				//start add
 				String theSsn = textField.getText();
 				String theBdate = textField_1.getText();
@@ -730,29 +731,29 @@ public class TheSystem extends JFrame {
 				String theWorks_For = textField_6.getText();
 				String theManages = textField_7.getText();
 				String theSupervises = textField_8.getText();	
-				
+
 				int theSsnInInt = Integer.valueOf(theSsn);
-				
-//				DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-//				Date theBdateInDate = null;
-//				try {
-//					theBdateInDate = (Date)formatter.parse(theBdate);
-//				} catch (ParseException e1) {
-//					// Auto-generated catch block
-//					System.out.println("BDate error");
-//					e1.printStackTrace();
-//				}  
-				
+
+				//				DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+				//				Date theBdateInDate = null;
+				//				try {
+				//					theBdateInDate = (Date)formatter.parse(theBdate);
+				//				} catch (ParseException e1) {
+				//					// Auto-generated catch block
+				//					System.out.println("BDate error");
+				//					e1.printStackTrace();
+				//				}  
+
 				BigDecimal theSalaryInDecimal = new BigDecimal(theSalary.replaceAll(",", ""));
-				
+
 				int theWorks_ForInInt = Integer.parseInt(theWorks_For);
-				int theManagesInInt = Integer.parseInt(theWorks_For);
-				int theSupervisesInInt = Integer.parseInt(theWorks_For);
+				int theManagesInInt = Integer.parseInt(theManages);
+				int theSupervisesInInt = Integer.parseInt(theSupervises);
 
 				try {
 					String createString =
 							"INSERT INTO " + "employee" +
-							" VALUES ('" + theSsnInInt + "', '" + theBdate + "', '" + theName + "', '" + theAddress + "', '" + theSalaryInDecimal + "', '" + theGender + "', '" + theWorks_ForInInt + "', '" + theManagesInInt + "','" + theSupervisesInInt + "');";
+									" VALUES ('" + theSsnInInt + "', '" + theBdate + "', '" + theName + "', '" + theAddress + "', '" + theSalaryInDecimal + "', '" + theGender + "', '" + theWorks_ForInInt + "', '" + theManagesInInt + "','" + theSupervisesInInt + "');";
 					System.out.println("LOOK HERE FULL STRING OF INSERT INTO:" + createString);
 					System.out.println("Conn of the new class: " + conn);
 					executeUpdate(conn, createString);
@@ -788,6 +789,33 @@ public class TheSystem extends JFrame {
 		btnUpdate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
+				// update start
+
+				String theSsnChange = textField.getText();
+				String theBdateChange = textField_1.getText();
+				String theNameChange = textField_2.getText();
+				String theAddressChange = textField_3.getText();
+				String theSalaryChange = textField_4.getText();
+				String theGenderChange = textField_5.getText();
+				String theWorks_ForChange = textField_6.getText();
+				String theManagesChange = textField_7.getText();
+				String theSupervisesChange = textField_8.getText();		
+
+				try {
+					String createString =
+							"UPDATE " + "employee" +
+							" SET " + "Bdate = '" + theBdateChange + "', " + "Name = '" + theNameChange + "',Address = '" + theAddressChange + "',Salary = '" + theSalaryChange + "',Gender = '" + theGenderChange + "',Works_For = '" + theWorks_ForChange + "',Manages = '" + theManagesChange + "',Supervises = '" + theSupervisesChange + "'" +
+							" WHERE Ssn = " + theSsnChange + ";";
+					System.out.println("LOOK HERE FULL STRING:" + createString);
+					executeUpdate(conn, createString);
+					System.out.println("Updated the table of ID: " + theSsnChange);
+				} catch (SQLException ee) {
+					System.out.println("ERROR: Could not update the table");
+					ee.printStackTrace();
+					return;
+				}
+
 			}
 		});
 		GridBagConstraints gbc_btnUpdate = new GridBagConstraints();
