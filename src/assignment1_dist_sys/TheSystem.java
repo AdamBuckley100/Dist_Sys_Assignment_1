@@ -774,9 +774,33 @@ public class TheSystem extends JFrame {
 		contentPane.add(btnAdd, gbc_btnAdd);
 
 		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				//delete start
+				
+				String theSsn = textField.getText();
+
+				try {
+					String createString =
+							"DELETE FROM " + "employee" +
+									" WHERE Ssn='" + theSsn + "';";
+					System.out.println("LOOK HERE FULL STRING OF INSERT INTO:" + createString);
+					System.out.println("Conn of the new class: " + conn);
+					executeUpdate(conn, createString);
+					System.out.println("Updated the table of ID: employee");
+				} catch (SQLException ee) {
+					System.out.println("ERROR: Could not update the table");
+					ee.printStackTrace();
+					return;
+				}
+				
+				//delete end
 			}
 		});
 		GridBagConstraints gbc_btnDelete = new GridBagConstraints();
@@ -815,7 +839,6 @@ public class TheSystem extends JFrame {
 					ee.printStackTrace();
 					return;
 				}
-
 			}
 		});
 		GridBagConstraints gbc_btnUpdate = new GridBagConstraints();
