@@ -85,7 +85,7 @@ public class TheSystem extends JFrame {
 	private final int portNumber = 3306;
 
 	/** The name of the database we are testing with (this default is installed with MySQL) */
-	private final String dbName = "test2_create_db";
+	private final String dbName = "data_structures_db";
 
 	/** The name of the table we are testing with */
 	private final String tableName = "employee";
@@ -781,9 +781,9 @@ public class TheSystem extends JFrame {
 		btnDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				//delete start
-				
+
 				String theSsn = textField.getText();
 
 				try {
@@ -799,7 +799,7 @@ public class TheSystem extends JFrame {
 					ee.printStackTrace();
 					return;
 				}
-				
+
 				//delete end
 			}
 		});
@@ -829,8 +829,8 @@ public class TheSystem extends JFrame {
 				try {
 					String createString =
 							"UPDATE " + "employee" +
-							" SET " + "Bdate = '" + theBdateChange + "', " + "Name = '" + theNameChange + "',Address = '" + theAddressChange + "',Salary = '" + theSalaryChange + "',Gender = '" + theGenderChange + "',Works_For = '" + theWorks_ForChange + "',Manages = '" + theManagesChange + "',Supervises = '" + theSupervisesChange + "'" +
-							" WHERE Ssn = " + theSsnChange + ";";
+									" SET " + "Bdate = '" + theBdateChange + "', " + "Name = '" + theNameChange + "',Address = '" + theAddressChange + "',Salary = '" + theSalaryChange + "',Gender = '" + theGenderChange + "',Works_For = '" + theWorks_ForChange + "',Manages = '" + theManagesChange + "',Supervises = '" + theSupervisesChange + "'" +
+									" WHERE Ssn = " + theSsnChange + ";";
 					System.out.println("LOOK HERE FULL STRING:" + createString);
 					executeUpdate(conn, createString);
 					System.out.println("Updated the table of ID: " + theSsnChange);
