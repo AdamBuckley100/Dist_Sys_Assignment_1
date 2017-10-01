@@ -15,11 +15,15 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
@@ -444,7 +448,7 @@ public class TheSystem extends JFrame {
 		contentPane.add(textField, gbc_textField);
 		textField.setColumns(10);
 
-		JLabel lblDob = new JLabel("DOB");
+		JLabel lblDob = new JLabel("DOB (Input: YYYY-MM-DD)");
 		GridBagConstraints gbc_lblDob = new GridBagConstraints();
 		gbc_lblDob.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDob.gridx = 2;
@@ -715,6 +719,50 @@ public class TheSystem extends JFrame {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				
+				//start add
+				String theSsn = textField.getText();
+				String theBdate = textField_1.getText();
+				String theName = textField_2.getText();
+				String theAddress = textField_3.getText();
+				String theSalary = textField_4.getText();
+				String theGender = textField_5.getText();
+				String theWorks_For = textField_6.getText();
+				String theManages = textField_7.getText();
+				String theSupervises = textField_8.getText();	
+				
+				int theSsnInInt = Integer.valueOf(theSsn);
+				
+//				DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+//				Date theBdateInDate = null;
+//				try {
+//					theBdateInDate = (Date)formatter.parse(theBdate);
+//				} catch (ParseException e1) {
+//					// Auto-generated catch block
+//					System.out.println("BDate error");
+//					e1.printStackTrace();
+//				}  
+				
+				BigDecimal theSalaryInDecimal = new BigDecimal(theSalary.replaceAll(",", ""));
+				
+				int theWorks_ForInInt = Integer.parseInt(theWorks_For);
+				int theManagesInInt = Integer.parseInt(theWorks_For);
+				int theSupervisesInInt = Integer.parseInt(theWorks_For);
+
+				try {
+					String createString =
+							"INSERT INTO " + "employee" +
+							" VALUES ('" + theSsnInInt + "', '" + theBdate + "', '" + theName + "', '" + theAddress + "', '" + theSalaryInDecimal + "', '" + theGender + "', '" + theWorks_ForInInt + "', '" + theManagesInInt + "','" + theSupervisesInInt + "');";
+					System.out.println("LOOK HERE FULL STRING OF INSERT INTO:" + createString);
+					System.out.println("Conn of the new class: " + conn);
+					executeUpdate(conn, createString);
+					System.out.println("Updated the table of ID: employee");
+				} catch (SQLException e) {
+					System.out.println("ERROR: Could not update the table");
+					e.printStackTrace();
+					return;
+				}
+				//end add
 			}
 		});
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
