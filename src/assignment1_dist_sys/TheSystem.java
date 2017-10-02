@@ -108,6 +108,18 @@ public class TheSystem extends JFrame {
 
 		return conn;
 	}
+	
+//	public void reloadConnection() throws SQLException
+//	{
+//		Connection conn = null;
+//		Properties connectionProps = new Properties();
+//		connectionProps.put("user", this.userName);
+//		connectionProps.put("password", this.password);
+//
+//		conn = DriverManager.getConnection("jdbc:mysql://"
+//				+ this.serverName + ":" + this.portNumber + "/" + this.dbName,
+//				connectionProps);
+//	}
 
 	/**
 	 * Run a SQL command which does NOT return a recordset:
@@ -467,9 +479,76 @@ public class TheSystem extends JFrame {
 		textField_1.setColumns(10);
 
 		JButton btnPrevious = new JButton("Previous");
+		btnPrevious.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnPrevious.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				// previous start
+				try {
+
+					boolean whatIsPrevious = true;
+
+					if ( (whatIsPrevious = resultSet.previous() ) == false ) // if theres nothing previous
+					{
+						if (whatIsPrevious == false) // no prev call made
+						{
+							//dont allow it to go past at all
+							// show the next on screen (next IS the first one)
+
+							resultSet.next();
+							
+							String ssnVal = resultSet.getString("Ssn");
+							String bDateVal = resultSet.getString("Bdate");
+							String nameVal = resultSet.getString("Name");
+							String addressVal = resultSet.getString("Address");
+							String salaryVal = resultSet.getString("Salary");
+							String genderVal = resultSet.getString("Gender");
+							String works_ForVal = resultSet.getString("Works_For");
+							String managesVal = resultSet.getString("Manages");
+							String supervisesVal = resultSet.getString("Supervises");
+							
+							textField.setText(ssnVal);
+							textField_1.setText(bDateVal);
+							textField_2.setText(nameVal);
+							textField_3.setText(addressVal);
+							textField_4.setText(salaryVal);
+							textField_5.setText(genderVal);
+							textField_6.setText(works_ForVal);
+							textField_7.setText(managesVal);
+							textField_8.setText(supervisesVal);
+						}
+					}
+
+					String ssnVal = resultSet.getString("Ssn");
+					String bDateVal = resultSet.getString("Bdate");
+					String nameVal = resultSet.getString("Name");
+					String addressVal = resultSet.getString("Address");
+					String salaryVal = resultSet.getString("Salary");
+					String genderVal = resultSet.getString("Gender");
+					String works_ForVal = resultSet.getString("Works_For");
+					String managesVal = resultSet.getString("Manages");
+					String supervisesVal = resultSet.getString("Supervises");
+
+					textField.setText(ssnVal);
+					textField_1.setText(bDateVal);
+					textField_2.setText(nameVal);
+					textField_3.setText(addressVal);
+					textField_4.setText(salaryVal);
+					textField_5.setText(genderVal);
+					textField_6.setText(works_ForVal);
+					textField_7.setText(managesVal);
+					textField_8.setText(supervisesVal);
+
+				} catch (SQLException e1) {
+					System.out.println("error 4 OK?");
+					e1.printStackTrace();
+				}
+
+				// previous end
 			}
 		});
 		GridBagConstraints gbc_btnPrevious = new GridBagConstraints();
@@ -619,14 +698,17 @@ public class TheSystem extends JFrame {
 		contentPane.add(textField_4, gbc_textField_4);
 		textField_4.setColumns(10);
 
-		JButton btnClear = new JButton("Clear");
+		JButton btnClear = new JButton("Clear all (except Ssn)");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnClear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
 				// clear all of the fields 
 
-				textField.setText("");
 				textField_1.setText("");
 				textField_2.setText("");
 				textField_3.setText("");
@@ -660,6 +742,31 @@ public class TheSystem extends JFrame {
 		gbc_textField_5.gridy = 6;
 		contentPane.add(textField_5, gbc_textField_5);
 		textField_5.setColumns(10);
+		
+		JButton btnClearAllincluding = new JButton("Clear all (incl. Ssn)");
+		btnClearAllincluding.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				// Start
+				
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_3.setText("");
+				textField_4.setText("");
+				textField_5.setText("");
+				textField_6.setText("");
+				textField_7.setText("");
+				textField_8.setText("");
+				
+				// End
+			}
+		});
+		GridBagConstraints gbc_btnClearAllincluding = new GridBagConstraints();
+		gbc_btnClearAllincluding.insets = new Insets(0, 0, 5, 5);
+		gbc_btnClearAllincluding.gridx = 5;
+		gbc_btnClearAllincluding.gridy = 6;
+		contentPane.add(btnClearAllincluding, gbc_btnClearAllincluding);
 
 		JLabel lblNoOfPeople = new JLabel("No. of people working for");
 		GridBagConstraints gbc_lblNoOfPeople = new GridBagConstraints();
@@ -717,6 +824,10 @@ public class TheSystem extends JFrame {
 
 		// The Add button
 		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -763,6 +874,10 @@ public class TheSystem extends JFrame {
 					e.printStackTrace();
 					return;
 				}
+				
+				// reload the conn so that the new addition can be iterated through in next and prev.
+					runn();
+				
 				//end add
 			}
 		});
@@ -847,5 +962,12 @@ public class TheSystem extends JFrame {
 		gbc_btnUpdate.gridx = 4;
 		gbc_btnUpdate.gridy = 11;
 		contentPane.add(btnUpdate, gbc_btnUpdate);
+		
+		JLabel lblWhenDeletingJust = new JLabel("When Deleting, you can input only the Ssn or all fields.");
+		GridBagConstraints gbc_lblWhenDeletingJust = new GridBagConstraints();
+		gbc_lblWhenDeletingJust.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWhenDeletingJust.gridx = 2;
+		gbc_lblWhenDeletingJust.gridy = 12;
+		contentPane.add(lblWhenDeletingJust, gbc_lblWhenDeletingJust);
 	}
 }
