@@ -55,6 +55,13 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author Adam Buckley
+ * @date 02/10/2017
+ * Distributed Systems Assignment 1
+ */
+
 public class TheSystem extends JFrame {
 
 	private JPanel contentPane;
@@ -424,15 +431,15 @@ public class TheSystem extends JFrame {
 	 */
 	public TheSystem() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 698, 376);
+		setBounds(100, 100, 698, 444);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel lblEmployeeDetails = new JLabel("Employee Details");
@@ -914,6 +921,8 @@ public class TheSystem extends JFrame {
 					ee.printStackTrace();
 					return;
 				}
+				
+				runn();
 
 				//delete end
 			}
@@ -925,13 +934,17 @@ public class TheSystem extends JFrame {
 		contentPane.add(btnDelete, gbc_btnDelete);
 
 		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnUpdate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
 				// update start
 
-				String theSsnChange = textField.getText();
+				String whatIsInTheSsnField = textField.getText();
 				String theBdateChange = textField_1.getText();
 				String theNameChange = textField_2.getText();
 				String theAddressChange = textField_3.getText();
@@ -945,15 +958,17 @@ public class TheSystem extends JFrame {
 					String createString =
 							"UPDATE " + "employee" +
 									" SET " + "Bdate = '" + theBdateChange + "', " + "Name = '" + theNameChange + "',Address = '" + theAddressChange + "',Salary = '" + theSalaryChange + "',Gender = '" + theGenderChange + "',Works_For = '" + theWorks_ForChange + "',Manages = '" + theManagesChange + "',Supervises = '" + theSupervisesChange + "'" +
-									" WHERE Ssn = " + theSsnChange + ";";
+									" WHERE Ssn = " + whatIsInTheSsnField + ";";
 					System.out.println("LOOK HERE FULL STRING:" + createString);
 					executeUpdate(conn, createString);
-					System.out.println("Updated the table of ID: " + theSsnChange);
+					System.out.println("Updated the table of ID: " + whatIsInTheSsnField);
+					runn();
 				} catch (SQLException ee) {
 					System.out.println("ERROR: Could not update the table");
 					ee.printStackTrace();
 					return;
 				}
+				
 			}
 		});
 		GridBagConstraints gbc_btnUpdate = new GridBagConstraints();
@@ -969,5 +984,21 @@ public class TheSystem extends JFrame {
 		gbc_lblWhenDeletingJust.gridx = 2;
 		gbc_lblWhenDeletingJust.gridy = 12;
 		contentPane.add(lblWhenDeletingJust, gbc_lblWhenDeletingJust);
+		
+		JLabel lblNewLabel = new JLabel("Note: Ssn is not permitted to be changed.");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 2;
+		gbc_lblNewLabel.gridy = 13;
+		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		
+		JLabel lblNoteIfA = new JLabel("If a button seems to not work, try pressing again.");
+		GridBagConstraints gbc_lblNoteIfA = new GridBagConstraints();
+		gbc_lblNoteIfA.anchor = GridBagConstraints.WEST;
+		gbc_lblNoteIfA.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNoteIfA.gridx = 2;
+		gbc_lblNoteIfA.gridy = 14;
+		contentPane.add(lblNoteIfA, gbc_lblNoteIfA);
 	}
 }
