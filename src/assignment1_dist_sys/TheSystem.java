@@ -647,12 +647,6 @@ public class TheSystem extends JFrame {
 					textField_7.setText(managesVal);
 					textField_8.setText(supervisesVal);
 
-					//						System.out.println (
-					//								"id = " + idVal
-					//								+ ", fistname = " + firstNameVal
-					//								+ ", lastname = " + lastNameVal
-					//								+ ", email = " + emailVal);
-
 				} catch (SQLException e1) {
 					System.out.println("error 4 OK?");
 					e1.printStackTrace();
@@ -852,16 +846,6 @@ public class TheSystem extends JFrame {
 
 				int theSsnInInt = Integer.valueOf(theSsn);
 
-				//				DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-				//				Date theBdateInDate = null;
-				//				try {
-				//					theBdateInDate = (Date)formatter.parse(theBdate);
-				//				} catch (ParseException e1) {
-				//					// Auto-generated catch block
-				//					System.out.println("BDate error");
-				//					e1.printStackTrace();
-				//				}  
-
 				BigDecimal theSalaryInDecimal = new BigDecimal(theSalary.replaceAll(",", ""));
 
 				int theWorks_ForInInt = Integer.parseInt(theWorks_For);
@@ -872,7 +856,7 @@ public class TheSystem extends JFrame {
 					String createString =
 							"INSERT INTO " + "employee" +
 									" VALUES ('" + theSsnInInt + "', '" + theBdate + "', '" + theName + "', '" + theAddress + "', '" + theSalaryInDecimal + "', '" + theGender + "', '" + theWorks_ForInInt + "', '" + theManagesInInt + "','" + theSupervisesInInt + "');";
-					System.out.println("LOOK HERE FULL STRING OF INSERT INTO:" + createString);
+					System.out.println("Inset String:" + createString);
 					System.out.println("Conn of the new class: " + conn);
 					executeUpdate(conn, createString);
 					System.out.println("Updated the table of ID: employee");
@@ -912,7 +896,7 @@ public class TheSystem extends JFrame {
 					String createString =
 							"DELETE FROM " + "employee" +
 									" WHERE Ssn='" + theSsn + "';";
-					System.out.println("LOOK HERE FULL STRING OF INSERT INTO:" + createString);
+					System.out.println("Delete string:" + createString);
 					System.out.println("Conn of the new class: " + conn);
 					executeUpdate(conn, createString);
 					System.out.println("Updated the table of ID: employee");
@@ -959,7 +943,7 @@ public class TheSystem extends JFrame {
 							"UPDATE " + "employee" +
 									" SET " + "Bdate = '" + theBdateChange + "', " + "Name = '" + theNameChange + "',Address = '" + theAddressChange + "',Salary = '" + theSalaryChange + "',Gender = '" + theGenderChange + "',Works_For = '" + theWorks_ForChange + "',Manages = '" + theManagesChange + "',Supervises = '" + theSupervisesChange + "'" +
 									" WHERE Ssn = " + whatIsInTheSsnField + ";";
-					System.out.println("LOOK HERE FULL STRING:" + createString);
+					System.out.println("Update String:" + createString);
 					executeUpdate(conn, createString);
 					System.out.println("Updated the table of ID: " + whatIsInTheSsnField);
 					runn();
